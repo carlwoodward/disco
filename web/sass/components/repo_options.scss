@@ -1,0 +1,12 @@
+.repo-options {
+  background: rgba(244,244,244,1);
+  border-bottom: 1px solid rgba(213,213,213,1);
+  display: block;
+  padding: units(0.5) units(1);
+
+  h1 {
+    font-size: $default-font-size * 0.85;
+    line-height: $default-line-height;
+    font-weight: normal;
+  }
+}

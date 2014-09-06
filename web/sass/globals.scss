@@ -1,0 +1,20 @@
+// Sizing
+
+$default-font-size: 1.2rem;
+$default-line-height: 1.8rem;
+
+// Fonts
+
+$default-font-family: "proxima-nova-soft";
+$code-font-family: Consolas, Monaco, "Andale Mono", monospace;
+
+// Colors
+
+// Functions
+@function units($n) {
+  @return $n * $default-font-size;
+}
+
+@function line-height($n) {
+  @return $n * $default-line-height;
+}

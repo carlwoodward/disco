@@ -1,0 +1,35 @@
+.commit-header {
+  .summary {
+    background: rgba(244,244,244,1);
+    border-bottom: 1px solid rgba(212,212,212,1);
+    padding: units(0.5) units(1);
+
+    h1 {
+      font-weight: normal;
+      font-size: $default-font-size * 0.85;
+      line-height: $default-line-height;
+      opacity: 0.5;
+    }
+  }
+
+  .details {
+    border-bottom: 1px solid rgba(214,214,214,1);
+    padding: units(0.5) units(1);
+    position: relative;
+
+    .avatar {
+      border-radius: units(0.3);
+      position: absolute;
+      right: units(1);
+    }
+
+    label {
+      display: inline-block;
+      font-weight: normal;
+      opacity: 0.5;
+      padding-right: units(0.5);
+      text-align: right;
+      width: units(6);
+    }
+  }
+}

@@ -1,0 +1,34 @@
+.commit-summary {
+  padding: units(0.25) units(1) units(0.25) units(3.5);
+  position: relative;
+
+  .avatar {
+    border-radius: units(0.3);
+    position: absolute;
+    width: units(2);
+    left: units(1);
+    top: units(0.5);
+  }
+
+  header {
+    position: relative;
+
+    .author {
+      opacity: 0.5;
+    }
+
+    .date {
+      opacity: 0.5;
+      position: absolute;
+      right: 0;
+    }
+  }
+
+  .sha {
+    opacity: 0.5;
+  }
+
+  &.selected {
+    background: rgba(212,212,212,1);
+  }
+}

@@ -1,0 +1,14 @@
+@import 'globals';
+
+* {
+  font-family: $default-font-family;
+  font-size: 15px;
+  color: rgba(30,30,30,1);
+}
+
+html, body {
+  background: rgba(255,255,255,1);
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
