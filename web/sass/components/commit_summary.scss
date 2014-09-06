@@ -1,13 +1,16 @@
 .commit-summary {
-  padding: units(0.25) units(1) units(0.25) units(3.5);
+  border-bottom: 1px solid rgba(241,241,241,1);
+  padding: units(0.5) units(1) units(0.25) units(3.5);
   position: relative;
 
   .avatar {
     border-radius: units(0.3);
-    position: absolute;
-    width: units(2);
+    height: units(2);
     left: units(1);
-    top: units(0.5);
+    object-fit: cover;
+    position: absolute;
+    top: units(0.75);
+    width: units(2);
   }
 
   header {
@@ -25,7 +28,24 @@
   }
 
   .sha {
+    display: inline-block;
+    float: left;
+    line-height: $default-line-height;
     opacity: 0.5;
+    width: units(4.5);
+
+    pre {
+      margin: 0;
+    }
+  }
+
+  .message {
+    display: inline-block;
+    overflow: hidden;
+    line-height: $default-line-height;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: calc(99% - #{units(4.5)});
   }
 
   &.selected {

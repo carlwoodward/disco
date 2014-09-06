@@ -3,292 +3,65 @@
     <h1>Repo name</h1>
   </header>
 
-  <article class="commit-summary selected">
-    <img class="avatar" src="https://avatars0.githubusercontent.com/u/16838?v=2&s=72" />
+  <article class="commit-summary" ng-repeat="commit in commits">
+    <img class="avatar" ng-src="{{commit.author.avatar_url}}" />
     <header>
-      <span class="author">Carl Woodward</span>
-      <time class="date">6/09/2014</time>
+      <span class="author">{{commit.commit.author.name}}</span>
+      <time class="date">{{commit.formatted_date}}</time>
     </header>
-    <span class="sha">3918e064</span>
-    <span class="message">Fix error when processing unprocessed.</span>
-  </article>
-
-  <article class="commit-summary">
-    <img class="avatar" src="https://avatars0.githubusercontent.com/u/16838?v=2&s=72" />
-    <span class="author">Carl Woodward</span>
-    <time>6/09/2014</time>
-    <span class="sha">3918e064</span>
-    <span class="message">Fix error when processing unprocessed.</span>
-  </article>
-
-  <article class="commit-summary">
-    <img class="avatar" src="https://avatars0.githubusercontent.com/u/16838?v=2&s=72" />
-    <span class="author">Carl Woodward</span>
-    <time>6/09/2014</time>
-    <span class="sha">3918e064</span>
-    <span class="message">Fix error when processing unprocessed.</span>
-  </article>
-
-  <article class="commit-summary">
-    <img class="avatar" src="https://avatars0.githubusercontent.com/u/16838?v=2&s=72" />
-    <span class="author">Carl Woodward</span>
-    <time>6/09/2014</time>
-    <span class="sha">3918e064</span>
-    <span class="message">Fix error when processing unprocessed.</span>
-  </article>
-
-  <article class="commit-summary">
-    <img class="avatar" src="https://avatars0.githubusercontent.com/u/16838?v=2&s=72" />
-    <span class="author">Carl Woodward</span>
-    <time>6/09/2014</time>
-    <span class="sha">3918e064</span>
-    <span class="message">Fix error when processing unprocessed.</span>
-  </article>
-
-  <article class="commit-summary">
-    <img class="avatar" src="https://avatars0.githubusercontent.com/u/16838?v=2&s=72" />
-    <span class="author">Carl Woodward</span>
-    <time>6/09/2014</time>
-    <span class="sha">3918e064</span>
-    <span class="message">Fix error when processing unprocessed.</span>
-  </article>
-
-  <article class="commit-summary">
-    <img class="avatar" src="https://avatars0.githubusercontent.com/u/16838?v=2&s=72" />
-    <span class="author">Carl Woodward</span>
-    <time>6/09/2014</time>
-    <span class="sha">3918e064</span>
-    <span class="message">Fix error when processing unprocessed.</span>
-  </article>
-
-  <article class="commit-summary">
-    <img class="avatar" src="https://avatars0.githubusercontent.com/u/16838?v=2&s=72" />
-    <span class="author">Carl Woodward</span>
-    <time>6/09/2014</time>
-    <span class="sha">3918e064</span>
-    <span class="message">Fix error when processing unprocessed.</span>
-  </article>
-
-  <article class="commit-summary">
-    <img class="avatar" src="https://avatars0.githubusercontent.com/u/16838?v=2&s=72" />
-    <span class="author">Carl Woodward</span>
-    <time>6/09/2014</time>
-    <span class="sha">3918e064</span>
-    <span class="message">Fix error when processing unprocessed.</span>
-  </article>
-
-  <article class="commit-summary">
-    <img class="avatar" src="https://avatars0.githubusercontent.com/u/16838?v=2&s=72" />
-    <span class="author">Carl Woodward</span>
-    <time>6/09/2014</time>
-    <span class="sha">3918e064</span>
-    <span class="message">Fix error when processing unprocessed.</span>
-  </article>
-
-  <article class="commit-summary">
-    <img class="avatar" src="https://avatars0.githubusercontent.com/u/16838?v=2&s=72" />
-    <span class="author">Carl Woodward</span>
-    <time>6/09/2014</time>
-    <span class="sha">3918e064</span>
-    <span class="message">Fix error when processing unprocessed.</span>
-  </article>
-
-  <article class="commit-summary">
-    <img class="avatar" src="https://avatars0.githubusercontent.com/u/16838?v=2&s=72" />
-    <span class="author">Carl Woodward</span>
-    <time>6/09/2014</time>
-    <span class="sha">3918e064</span>
-    <span class="message">Fix error when processing unprocessed.</span>
-  </article>
-
-  <article class="commit-summary">
-    <img class="avatar" src="https://avatars0.githubusercontent.com/u/16838?v=2&s=72" />
-    <span class="author">Carl Woodward</span>
-    <time>6/09/2014</time>
-    <span class="sha">3918e064</span>
-    <span class="message">Fix error when processing unprocessed.</span>
-  </article>
-
-  <article class="commit-summary">
-    <img class="avatar" src="https://avatars0.githubusercontent.com/u/16838?v=2&s=72" />
-    <span class="author">Carl Woodward</span>
-    <time>6/09/2014</time>
-    <span class="sha">3918e064</span>
-    <span class="message">Fix error when processing unprocessed.</span>
-  </article>
-
-  <article class="commit-summary">
-    <img class="avatar" src="https://avatars0.githubusercontent.com/u/16838?v=2&s=72" />
-    <span class="author">Carl Woodward</span>
-    <time>6/09/2014</time>
-    <span class="sha">3918e064</span>
-    <span class="message">Fix error when processing unprocessed.</span>
-  </article>
-
-  <article class="commit-summary">
-    <img class="avatar" src="https://avatars0.githubusercontent.com/u/16838?v=2&s=72" />
-    <span class="author">Carl Woodward</span>
-    <time>6/09/2014</time>
-    <span class="sha">3918e064</span>
-    <span class="message">Fix error when processing unprocessed.</span>
-  </article>
-
-  <article class="commit-summary">
-    <img class="avatar" src="https://avatars0.githubusercontent.com/u/16838?v=2&s=72" />
-    <span class="author">Carl Woodward</span>
-    <time>6/09/2014</time>
-    <span class="sha">3918e064</span>
-    <span class="message">Fix error when processing unprocessed.</span>
-  </article>
-
-  <article class="commit-summary">
-    <img class="avatar" src="https://avatars0.githubusercontent.com/u/16838?v=2&s=72" />
-    <span class="author">Carl Woodward</span>
-    <time>6/09/2014</time>
-    <span class="sha">3918e064</span>
-    <span class="message">Fix error when processing unprocessed.</span>
-  </article>
-
-  <article class="commit-summary">
-    <img class="avatar" src="https://avatars0.githubusercontent.com/u/16838?v=2&s=72" />
-    <span class="author">Carl Woodward</span>
-    <time>6/09/2014</time>
-    <span class="sha">3918e064</span>
-    <span class="message">Fix error when processing unprocessed.</span>
-  </article>
-
-  <article class="commit-summary">
-    <img class="avatar" src="https://avatars0.githubusercontent.com/u/16838?v=2&s=72" />
-    <span class="author">Carl Woodward</span>
-    <time>6/09/2014</time>
-    <span class="sha">3918e064</span>
-    <span class="message">Fix error when processing unprocessed.</span>
+    <div class="details">
+      <span class="sha"><pre>{{commit.short_sha}}</pre></span>
+      <span class="message">{{commit.title}}</span>
+    </div>
   </article>
 </section>
 
 <article class="commit-detail">
   <header class="commit-header">
     <div class="summary">
-      <h1 class="sha">3918e064</h1>
+      <h1 class="sha">{{commit.sha}}</h1>
     </div>
     <div class="details">
-      <img class="avatar" src="https://avatars0.githubusercontent.com/u/16838?v=2&s=72" />
+      <img class="avatar" ng-src="{{commit.author.avatar_url}}" />
       <div class="detail">
         <label>Author date</label>
-        <span class="value">6 September 2014 5:42:51PM</time>
+        <span class="value">{{commit.formatted_date}}</span>
       </div>
       <div class="detail">
         <label>Author</label>
-        <span class="value">Carl Woodward</span>
+        <span class="value">{{commit.commit.author.name}}</span>
       </div>
       <div class="detail">
         <label>Commit hash</label>
-        <span class="value">98audsfajsdf98asdf98asjdf</span>
+        <span class="value">{{commit.sha}}</span>
       </div>
-      <div class="detail">
+      <div class="detail" ng-repeat="parent in commit.parents">
         <label>Parent hash</label>
-        <span class="value">98audsfajsdf98asdf98asjdf</span>
+        <span class="value">{{parent.sha}}</span>
       </div>
       <div class="detail">
         <label>Tree hash</label>
-        <span class="value">98audsfajsdf98asdf98asjdf</span>
+        <span class="value">{{commit.commit.tree.sha}}</span>
       </div>
     </div>
   </header>
 
   <div class="commit-info">
-    <h3>Fix error when processing unprocessed.</h3>
-    <p>In link server, calling exit was causing #run call to never be called recursively. This was changed to raise an exception if an error occurs. Conversly, if it succeeds everything falls through and #run gets called.</p>
+    <h3>{{commit.title}}</h3>
+    <p>{{commit.body}}</p>
   </div>
 
   <ol class="files">
-    <li class="file">
-      <header>
-        <h4>
-          <span class="kind modified">modified</span>
-          <span class="filename">app/lib/app/capture/link_queue.ex</span>
-        </h4>
-      </header>
-      <div class="diff">
-        Diff goes here
-      </div>
-    </li>
-    <li class="file">
-      <header>
-        <h4>
-          <span class="kind modified">modified</span>
-          <span class="filename">app/lib/app/capture/link_queue.ex</span>
-        </h4>
-      </header>
-      <div class="diff">
-        Diff goes here
-      </div>
-    </li>
-    <li class="file">
-      <header>
-        <h4>
-          <span class="kind modified">modified</span>
-          <span class="filename">app/lib/app/capture/link_queue.ex</span>
-        </h4>
-      </header>
-      <div class="diff">
-        Diff goes here
-      </div>
-    </li>
-    <li class="file">
-      <header>
-        <h4>
-          <span class="kind modified">modified</span>
-          <span class="filename">app/lib/app/capture/link_queue.ex</span>
-        </h4>
-      </header>
-      <div class="diff">
-        Diff goes here
-      </div>
-    </li>
-    <li class="file">
-      <header>
-        <h4>
-          <span class="kind modified">modified</span>
-          <span class="filename">app/lib/app/capture/link_queue.ex</span>
-        </h4>
-      </header>
-      <div class="diff">
-        Diff goes here
-      </div>
-    </li>
-    <li class="file">
-      <header>
-        <h4>
-          <span class="kind modified">modified</span>
-          <span class="filename">app/lib/app/capture/link_queue.ex</span>
-        </h4>
-      </header>
-      <div class="diff">
-        Diff goes here
-      </div>
-    </li>
-    <li class="file">
-      <header>
-        <h4>
-          <span class="kind modified">modified</span>
-          <span class="filename">app/lib/app/capture/link_queue.ex</span>
-        </h4>
-      </header>
-      <div class="diff">
-        Diff goes here
-      </div>
-    </li>
-    <li class="file">
-      <header>
-        <h4>
-          <span class="kind modified">modified</span>
-          <span class="filename">app/lib/app/capture/link_queue.ex</span>
-        </h4>
-      </header>
-      <div class="diff">
-        Diff goes here
-      </div>
+    <li class="file" ng-repeat="file in commit.files">
+      <details>
+        <summary>
+          <span ng-class="file.status" class="status">{{file.status}}</span>
+          <span class="filename">{{file.filename}}</span>
+        </summary>
+        <div class="diff">
+          Diff goes here
+        </div>
+      </details>
     </li>
   </ol>
 </article>

@@ -19,8 +19,11 @@
 
     .avatar {
       border-radius: units(0.3);
+      height: units(5);
+      object-fit: cover;
       position: absolute;
       right: units(1);
+      width: units(5);
     }
 
     label {

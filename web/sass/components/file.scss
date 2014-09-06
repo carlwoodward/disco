@@ -10,7 +10,31 @@ li.file {
     font-weight: normal;
   }
 
-  .diff {
-    display: none;
+  summary:focus {
+    outline: 0;
+  }
+
+  .status {
+    background: rgba(0,0,0,0.3);
+    border-radius: units(0.2);
+    color: white;
+    display: inline-block;
+    font-size: units(0.7);
+    font-weight: bold;
+    margin-right: units(0.5);
+    text-align: center;
+    width: units(5);
+
+    &.added {
+      background: rgba(113,206,110,1);
+    }
+
+    &.modified {
+      background: rgba(106,144,201,1);
+    }
+
+    &.deleted {
+      background: rgba(251,27,46,1);
+    }
   }
 }
