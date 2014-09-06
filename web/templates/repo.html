@@ -59,7 +59,9 @@
           <span class="filename">{{file.filename}}</span>
         </summary>
         <div class="diff">
-          Diff goes here
+          <div class="line" ng-repeat="line in file.lines track by $index">
+            {{line}}
+          </div>
         </div>
       </details>
     </li>
