@@ -38,8 +38,24 @@ li.file {
     }
   }
 
+  .diff {
+    margin-top: units(0.5);
+  }
+
   .line {
     font-family: monospace;
     font-size: units(0.75);
+
+    &.add {
+      background: rgba(221,255,221,1);
+    }
+
+    &.delete {
+      background: rgba(255,221,221,1);
+    }
+
+    &.marker {
+      background: rgba(248,250,253,1);
+    }
   }
 }
