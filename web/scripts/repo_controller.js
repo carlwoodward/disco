@@ -46,11 +46,33 @@ RepoController.controller('RepoController', ['$scope', '$http', '$routeParams', 
       return commit;
     };
 
+    $scope.findNextPage = function(meta) {
+      for(var i = 0; i < meta['Link'].length; i++) {
+        var link = meta['Link'][i];
+        if(link[1]['rel'] === 'next') {
+          return link[0];
+        }
+      }
+      return null;
+    };
+
     $scope.show = function(commit) {
       if($scope.commits.length > 0) {
         var commitSummary = commit;
         $http.jsonp(commitSummary.url + '?callback=JSON_CALLBACK' + clientParams).success(function(response) {
           $scope.commit = transformDetail(response.data);
+        });
+      }
+    };
+
+    $scope.gotoNextPage = function() {
+      if($scope.nextPage !== null) {
+        $http.jsonp($scope.nextPage.replace(/angular.callbacks._\d+/, 'JSON_CALLBACK')).success(function(response) {
+          $scope.commits = $scope.commits.concat((response.data || []).map(function(commit) {
+            return transformSummary(commit);
+          }));
+
+          $scope.nextPage = $scope.findNextPage(response.meta);
         });
       }
     };
@@ -65,6 +87,8 @@ RepoController.controller('RepoController', ['$scope', '$http', '$routeParams', 
       $scope.commits = (response.data || []).map(function(commit) {
         return transformSummary(commit);
       });
+
+      $scope.nextPage = $scope.findNextPage(response.meta);
 
       if($scope.commits.length > 0) {
         var commitSummary = $scope.commits[0];

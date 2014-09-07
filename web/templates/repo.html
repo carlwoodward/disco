@@ -14,6 +14,8 @@
       <span class="message">{{commit.title}}</span>
     </div>
   </article>
+
+  <a ng-if="nextPage" ng-click="gotoNextPage()" class="pagination">Older</a>
 </section>
 
 <article class="commit-detail">
