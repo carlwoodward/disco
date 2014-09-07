@@ -47,6 +47,13 @@ RepoController.controller('RepoController', ['$scope', '$http', '$routeParams', 
       return commit;
     };
 
+    $scope.commitSummaryClass = function(commit) {
+      if(commit.sha === $scope.commit.sha) {
+        return 'selected';
+      }
+      return '';
+    };
+
     $scope.findNextPage = function(meta) {
       for(var i = 0; i < meta['Link'].length; i++) {
         var link = meta['Link'][i];

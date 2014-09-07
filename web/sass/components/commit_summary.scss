@@ -4,6 +4,14 @@
   padding: units(0.5) units(1) units(0.25) units(3.5);
   position: relative;
 
+  &.selected {
+    background: rgba(40,108,223,1);
+
+    .message, .sha pre, header .author, header .date {
+      color: white;
+    }
+  }
+
   .avatar {
     border-radius: units(0.3);
     height: units(2);
@@ -47,9 +55,5 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     width: calc(99% - #{units(4.5)});
-  }
-
-  &.selected {
-    background: rgba(212,212,212,1);
   }
 }

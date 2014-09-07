@@ -3,7 +3,7 @@
     <h1>{{repo.full_name}}</h1>
   </header>
 
-  <article class="commit-summary" ng-repeat="commit in commits" ng-click="show(commit)">
+  <article class="commit-summary" ng-repeat="commit in commits" ng-click="show(commit)" ng-class="commitSummaryClass(commit)">
     <img class="avatar" ng-src="{{commit.author.avatar_url}}" />
     <header>
       <span class="author">{{commit.commit.author.name}}</span>
