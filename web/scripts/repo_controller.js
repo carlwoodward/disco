@@ -73,8 +73,10 @@ RepoController.controller('RepoController', ['$scope', '$http', '$routeParams', 
     };
 
     $scope.commitSummaryClass = function(commit) {
-      if($scope.commmit && commit.sha === $scope.commit.sha) {
-        return 'selected';
+      if($scope.commit) {
+        if(commit.sha === $scope.commit.sha) {
+          return 'selected';
+        }
       }
       return '';
     };
