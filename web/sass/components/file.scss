@@ -46,6 +46,10 @@ li.file {
     font-family: monospace;
     font-size: units(0.75);
 
+    pre {
+      margin: 0;
+    }
+
     &.add {
       background: rgba(221,255,221,1);
     }

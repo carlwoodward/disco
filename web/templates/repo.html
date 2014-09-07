@@ -49,7 +49,7 @@
   </header>
 
   <div class="commit-info">
-    <h3>{{commit.title}}</h3>
+    <h3 ng-bind-html="commit.title"></h3>
     <p>{{commit.body}}</p>
   </div>
 
@@ -62,7 +62,7 @@
         </summary>
         <div class="diff">
           <div class="line" ng-repeat="line in file.lines track by $index" ng-class="line.kind">
-            {{line.value}}
+            <pre>{{line.value}}</pre>
           </div>
         </div>
       </details>

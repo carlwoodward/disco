@@ -1,3 +1,11 @@
+@import 'globals';
+
 .commit-info {
   padding: units(0.5) units(1);
+
+  h3 {
+    a {
+      font-size: units(1.35);
+    }
+  }
 }

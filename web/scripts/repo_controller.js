@@ -17,6 +17,7 @@ RepoController.controller('RepoController', ['$scope', '$http', '$routeParams', 
       var message = commit.commit.message;
       var index = message.indexOf('\n');
       commit['title'] = message.substring(0, index == -1 ? message.length : index);
+      commit['title'] = commit['title'].replace(/#(\d+)\s/, '<a href=\"https://github.com/' + $scope.repo.full_name + '/issues/$1\">#$1</a> ');
       commit['body'] = '';
       if(index != -1) {
         commit['body'] = message.substring(index + 1, message.length);

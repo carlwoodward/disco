@@ -1,5 +1,6 @@
 var discoApp = angular.module('disco', [
   'ngRoute',
+  'ngSanitize',
   'AppController',
   'RepoController'
 ]);
