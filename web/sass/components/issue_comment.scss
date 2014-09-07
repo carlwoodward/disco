@@ -2,11 +2,22 @@
   position: relative;
   padding: units(1) units(1) units(1) units(4);
 
+  border-bottom: 1px solid rgba(234,234,234,1);
+
+  &:first-child {
+    border-top: 1px solid rgba(234,234,234,1);
+  }
+
   .avatar {
+    border-radius: units(0.25);
     height: units(2.5);
     left: units(1);
     object-fit: cover;
     position: absolute;
     width: units(2.5);
+  }
+
+  .username {
+    font-weight: bold;
   }
 }
