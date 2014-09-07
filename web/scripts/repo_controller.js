@@ -46,8 +46,13 @@ RepoController.controller('RepoController', ['$scope', '$http', '$routeParams',
       return commit;
     };
 
-    var url = 'https://api.github.com/repos/' + $routeParams.owner + '/' + $routeParams.repo + '/commits?callback=JSON_CALLBACK' + clientParams;
-    $http.jsonp(url).success(function(response) {
+    var repoUrl = 'https://api.github.com/repos/' + $routeParams.owner + '/' + $routeParams.repo + '?callback=JSON_CALLBACK' + clientParams;
+    $http.jsonp(repoUrl).success(function(response) {
+      $scope.repo = response.data;
+    });
+
+    var commitsUrl = 'https://api.github.com/repos/' + $routeParams.owner + '/' + $routeParams.repo + '/commits?callback=JSON_CALLBACK' + clientParams;
+    $http.jsonp(commitsUrl).success(function(response) {
       $scope.commits = (response.data || []).map(function(commit) {
         return transformSummary(commit);
       });
