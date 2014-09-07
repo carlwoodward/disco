@@ -1,0 +1,12 @@
+.issue-comment {
+  position: relative;
+  padding: units(1) units(1) units(1) units(4);
+
+  .avatar {
+    height: units(2.5);
+    left: units(1);
+    object-fit: cover;
+    position: absolute;
+    width: units(2.5);
+  }
+}

@@ -3,4 +3,9 @@
   height: 100%;
   overflow: scroll;
   width: 65%;
+
+  &.issue {
+    border-right: 1px solid rgba(176,176,176,1);
+    width: 50%;
+  }
 }

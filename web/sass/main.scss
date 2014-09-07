@@ -7,6 +7,7 @@
 @import 'sections/app_view';
 @import 'sections/commit_list';
 @import 'sections/commit_detail';
+@import 'sections/issue_detail';
 
 @import 'components/repo_options';
 @import 'components/commit_summary';
@@ -14,5 +15,6 @@
 @import 'components/commit_info';
 @import 'components/file';
 @import 'components/pagination';
+@import 'components/issue_comment';
 
 @import 'override';

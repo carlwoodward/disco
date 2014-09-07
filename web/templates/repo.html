@@ -1,4 +1,4 @@
-<section class="commit-list">
+<section class="commit-list" ng-class="viewMode">
   <header class="repo-options">
     <h1>{{repo.full_name}}</h1>
   </header>
@@ -18,7 +18,7 @@
   <a ng-if="nextPage" ng-click="gotoNextPage()" class="pagination">Older</a>
 </section>
 
-<article class="commit-detail">
+<article class="commit-detail" ng-class="viewMode">
   <header class="commit-header">
     <div class="summary">
       <h1 class="sha">{{commit.sha}}</h1>
@@ -50,6 +50,7 @@
 
   <div class="commit-info">
     <h3 ng-bind-html="commit.title"></h3>
+    <p ng-if="commit.issue"><a ng-click="loadIssue(commit.issue)" class="issue">View Pull Request</a></p>
     <p>{{commit.body}}</p>
   </div>
 
@@ -58,7 +59,7 @@
       <details>
         <summary>
           <span ng-class="file.status" class="status">{{file.status}}</span>
-          <a ng-href="{{file.blob_url}}" class="filename">{{file.filename}}</span>
+          <a ng-href="{{file.blob_url}}" class="filename">{{file.filename}}</a>
         </summary>
         <div class="diff">
           <div class="line" ng-repeat="line in file.lines track by $index" ng-class="line.kind">
@@ -66,6 +67,26 @@
           </div>
         </div>
       </details>
+    </li>
+  </ol>
+</article>
+
+<article class="issue-detail" ng-class="viewMode">
+  <header class="issue-header">
+    <p><a class="issue-back" ng-click="hideIssue()">&larr; Hide and go back</a></p>
+    <h1>{{issue.title}}</h1>
+    <p class="issue-body">{{issue.body}}</p>
+    <p><em class="issue-state">{{issue.state}}</em></p>
+    <p><a class="view-issue-on-github" ng-href="{{issue.html_url}}">View on GitHub</a></p>
+  </header>
+
+  <ol>
+    <li class="issue-comment" ng-repeat="comment in issueComments track by $index">
+      <img class="avatar" ng-src="{{comment.user.avatar_url}}" />
+      <header>
+        <span class="username">{{comment.user.login}}</span>
+      </header>
+      <div class="body">{{comment.body}}</div>
     </li>
   </ol>
 </article>

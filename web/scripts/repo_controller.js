@@ -3,6 +3,7 @@ var RepoController = angular.module('RepoController', []);
 RepoController.controller('RepoController', ['$scope', '$http', '$routeParams', '$location',
   function ($scope, $http, $routeParams, $location) {
     var clientParams = '&client_id=c3a2cf5bc90344e47858&client_secret=650c7e530b49c3d89126d928991bf8e4eaf129d1'
+    $scope.viewMode = 'commits'; // Other option is issue.
 
     var transformSummary = function(commit) {
       commit['short_sha'] = commit.sha.substring(0, 8);
@@ -17,7 +18,15 @@ RepoController.controller('RepoController', ['$scope', '$http', '$routeParams', 
       var message = commit.commit.message;
       var index = message.indexOf('\n');
       commit['title'] = message.substring(0, index == -1 ? message.length : index);
-      commit['title'] = commit['title'].replace(/#(\d+)\s/, '<a href=\"https://github.com/' + $scope.repo.full_name + '/issues/$1\">#$1</a> ');
+
+      var issueMatch = commit['title'].match(/#(\d+)\s/);
+      if(issueMatch) {
+        commit['issue'] = issueMatch[1];
+      }
+      else {
+        commit['issue'] = null;
+      }
+
       commit['body'] = '';
       if(index != -1) {
         commit['body'] = message.substring(index + 1, message.length);
@@ -47,8 +56,24 @@ RepoController.controller('RepoController', ['$scope', '$http', '$routeParams', 
       return commit;
     };
 
+    $scope.loadIssue = function(issueNumber) {
+      var issueUrl = 'https://api.github.com/repos/' + $routeParams.owner + '/' + $routeParams.repo + '/issues/' + issueNumber + '?callback=JSON_CALLBACK' + clientParams;
+      $http.jsonp(issueUrl).success(function(response) {
+        $scope.issue = response.data;
+      });
+      var commentsUrl = 'https://api.github.com/repos/' + $routeParams.owner + '/' + $routeParams.repo + '/issues/' + issueNumber + '/comments?callback=JSON_CALLBACK' + clientParams;
+      $http.jsonp(commentsUrl).success(function(response) {
+        $scope.issueComments = response.data;
+      });
+      $scope.viewMode = 'issue';
+    };
+
+    $scope.hideIssue = function() {
+      $scope.viewMode = 'commits';
+    };
+
     $scope.commitSummaryClass = function(commit) {
-      if(commit.sha === $scope.commit.sha) {
+      if($scope.commmit && commit.sha === $scope.commit.sha) {
         return 'selected';
       }
       return '';

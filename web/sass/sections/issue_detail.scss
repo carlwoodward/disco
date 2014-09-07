@@ -1,0 +1,20 @@
+.issue-detail {
+  display: none;
+  flex-direction: column;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  width: 50%;
+
+  &.issue {
+    display: inline-block;
+  }
+
+  a {
+    cursor: pointer;
+  }
+
+  .issue-header {
+    padding: units(1);
+  }
+}
