@@ -7,6 +7,6 @@ var discoApp = angular.module('disco', [
 discoApp.config(['$routeProvider',
   function($routeProvider) {
     $routeProvider.
-      when('/:owner/:repo', { templateUrl: '/templates/repo.html', controller: 'RepoController' })
+      when('/:owner/:repo', { templateUrl: '/templates/repo.html', controller: 'RepoController', reloadOnSearch: false })
   }
 ]);

@@ -3,7 +3,7 @@
     <h1>{{repo.full_name}}</h1>
   </header>
 
-  <article class="commit-summary" ng-repeat="commit in commits">
+  <article class="commit-summary" ng-repeat="commit in commits" ng-click="show(commit)">
     <img class="avatar" ng-src="{{commit.author.avatar_url}}" />
     <header>
       <span class="author">{{commit.commit.author.name}}</span>
@@ -56,7 +56,7 @@
       <details>
         <summary>
           <span ng-class="file.status" class="status">{{file.status}}</span>
-          <span class="filename">{{file.filename}}</span>
+          <a ng-href="{{file.blob_url}}" class="filename">{{file.filename}}</span>
         </summary>
         <div class="diff">
           <div class="line" ng-repeat="line in file.lines track by $index" ng-class="line.kind">

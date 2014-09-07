@@ -1,7 +1,7 @@
 var RepoController = angular.module('RepoController', []);
 
-RepoController.controller('RepoController', ['$scope', '$http', '$routeParams',
-  function ($scope, $http, $routeParams) {
+RepoController.controller('RepoController', ['$scope', '$http', '$routeParams', '$location',
+  function ($scope, $http, $routeParams, $location) {
     var clientParams = '&client_id=c3a2cf5bc90344e47858&client_secret=650c7e530b49c3d89126d928991bf8e4eaf129d1'
 
     var transformSummary = function(commit) {
@@ -44,6 +44,15 @@ RepoController.controller('RepoController', ['$scope', '$http', '$routeParams',
         }
       }
       return commit;
+    };
+
+    $scope.show = function(commit) {
+      if($scope.commits.length > 0) {
+        var commitSummary = commit;
+        $http.jsonp(commitSummary.url + '?callback=JSON_CALLBACK' + clientParams).success(function(response) {
+          $scope.commit = transformDetail(response.data);
+        });
+      }
     };
 
     var repoUrl = 'https://api.github.com/repos/' + $routeParams.owner + '/' + $routeParams.repo + '?callback=JSON_CALLBACK' + clientParams;
