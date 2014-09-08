@@ -1,9 +1,12 @@
 var discoApp = angular.module('disco', [
   'ngRoute',
   'ngSanitize',
+  'hc.marked',
   'AppController',
   'RepoController'
 ]);
+
+// discoApp.config(['marked', function(marked) { marked.setOptions({gfm: true}); }]);
 
 discoApp.config(['$routeProvider',
   function($routeProvider) {

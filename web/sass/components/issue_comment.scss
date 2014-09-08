@@ -20,4 +20,10 @@
   .username {
     font-weight: bold;
   }
+
+  .body {
+    p:last-child {
+      margin-bottom: 0;
+    }
+  }
 }

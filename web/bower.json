@@ -18,6 +18,8 @@
     "angular-route": "~1.2.23",
     "normalize.css": "~3.0.1",
     "moment": "~2.8.3",
-    "angular-sanitize": "~1.2.23"
+    "angular-sanitize": "~1.2.23",
+    "angular-marked": "Hypercubed/angular-marked#~0.0.12",
+    "marked": "~0.3.2"
   }
 }
