@@ -1,6 +1,7 @@
 <section class="commit-list" ng-class="viewMode">
   <header class="repo-options">
     <h1>{{repo.full_name}}</h1>
+    <select ng-options="branch.name for branch in branches" ng-model="selectedBranch" ng-change="changeBranch()"></select>
   </header>
 
   <article class="commit-summary" ng-repeat="commit in commits" ng-click="show(commit)" ng-class="commitSummaryClass(commit)">

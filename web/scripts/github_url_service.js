@@ -16,8 +16,16 @@ GithubUrlService.factory('GithubUrlService', function() {
       return 'https://api.github.com/repos/' + routeParams.owner + '/' + routeParams.repo + '?callback=JSON_CALLBACK' + this.clientParams;
     },
 
+    branchesUrl: function(routeParams) {
+      return 'https://api.github.com/repos/' + routeParams.owner + '/' + routeParams.repo + '/branches?callback=JSON_CALLBACK' + this.clientParams;
+    },
+
     commitsUrl: function(routeParams) {
       return 'https://api.github.com/repos/' + routeParams.owner + '/' + routeParams.repo + '/commits?callback=JSON_CALLBACK' + this.clientParams;
+    },
+
+    commitsOnBranchUrl: function(routeParams, branch) {
+      return 'https://api.github.com/repos/' + routeParams.owner + '/' + routeParams.repo + '/commits?callback=JSON_CALLBACK&sha=' + branch.name + this.clientParams;
     }
   }
 });

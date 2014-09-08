@@ -3,10 +3,18 @@
   border-bottom: 1px solid rgba(213,213,213,1);
   display: block;
   padding: units(0.5) units(1);
+  position: relative;
 
   h1 {
     font-size: $default-font-size * 0.85;
     line-height: $default-line-height;
     font-weight: normal;
+  }
+
+  select {
+    margin-bottom: 0;
+    position: absolute;
+    right: units(1);
+    top: units(0.75);
   }
 }

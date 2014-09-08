@@ -64,25 +64,42 @@ RepoController.controller('RepoController', ['$scope', '$http', '$routeParams', 
       }
     };
 
+    var loadCommits = function(commitsUrl) {
+      $http.jsonp(commitsUrl).success(function(response) {
+        $scope.commits = (response.data || []).map(function(commit) {
+          return TransformerService.transformSummary(commit);
+        });
+
+        $scope.nextPage = $scope.findNextPage(response.meta);
+
+        if($scope.commits.length > 0) {
+          var commitSummary = $scope.commits[0];
+          $http.jsonp(commitSummary.url + '?callback=JSON_CALLBACK' + GithubUrlService.clientParams).success(function(response) {
+            $scope.commit = TransformerService.transformDetail(response.data);
+          });
+        }
+      });
+    };
+
+    $scope.changeBranch = function() {
+      loadCommits(GithubUrlService.commitsOnBranchUrl($routeParams, $scope.selectedBranch));
+    };
+
     var repoUrl = GithubUrlService.repoUrl($routeParams);
     $http.jsonp(repoUrl).success(function(response) {
       $scope.repo = response.data;
     });
 
-    var commitsUrl = GithubUrlService.commitsUrl($routeParams);
-    $http.jsonp(commitsUrl).success(function(response) {
-      $scope.commits = (response.data || []).map(function(commit) {
-        return TransformerService.transformSummary(commit);
+    var branchesUrl = GithubUrlService.branchesUrl($routeParams);
+    $http.jsonp(branchesUrl).success(function(response) {
+      $scope.branches = response.data;
+      $scope.branches.forEach(function(branch) {
+        if(branch.name === "master") {
+          $scope.selectedBranch = branch;
+        }
       });
-
-      $scope.nextPage = $scope.findNextPage(response.meta);
-
-      if($scope.commits.length > 0) {
-        var commitSummary = $scope.commits[0];
-        $http.jsonp(commitSummary.url + '?callback=JSON_CALLBACK' + GithubUrlService.clientParams).success(function(response) {
-          $scope.commit = TransformerService.transformDetail(response.data);
-        });
-      }
     });
+
+    loadCommits(GithubUrlService.commitsOnBranchUrl($routeParams, { name: 'master' }));
   }]
 );
