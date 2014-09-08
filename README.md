@@ -1,4 +1,4 @@
-This is a clientside project to make discovering git repositories simpler.
+This is a clientside project to make browsing git repositories simpler.
 
 Goals:
 
