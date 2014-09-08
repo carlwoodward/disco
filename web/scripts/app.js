@@ -1,6 +1,7 @@
 var discoApp = angular.module('disco', [
   'ngRoute',
   'ngSanitize',
+  'emoji',
   'hc.marked',
   'AppController',
   'RepoController'

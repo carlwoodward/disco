@@ -1,7 +1,7 @@
 var RepoController = angular.module('RepoController', []);
 
-RepoController.controller('RepoController', ['$scope', '$http', '$routeParams', '$location',
-  function ($scope, $http, $routeParams, $location) {
+RepoController.controller('RepoController', ['$scope', '$http', '$routeParams', '$location', 'marked',
+  function ($scope, $http, $routeParams, $location, marked) {
     var clientParams = '&client_id=c3a2cf5bc90344e47858&client_secret=650c7e530b49c3d89126d928991bf8e4eaf129d1'
     $scope.viewMode = 'commits'; // Other option is issue.
 
@@ -60,10 +60,15 @@ RepoController.controller('RepoController', ['$scope', '$http', '$routeParams', 
       var issueUrl = 'https://api.github.com/repos/' + $routeParams.owner + '/' + $routeParams.repo + '/issues/' + issueNumber + '?callback=JSON_CALLBACK' + clientParams;
       $http.jsonp(issueUrl).success(function(response) {
         $scope.issue = response.data;
+        $scope.issue['markdown_body'] = marked($scope.issue.body);
       });
       var commentsUrl = 'https://api.github.com/repos/' + $routeParams.owner + '/' + $routeParams.repo + '/issues/' + issueNumber + '/comments?callback=JSON_CALLBACK' + clientParams;
       $http.jsonp(commentsUrl).success(function(response) {
         $scope.issueComments = response.data;
+        for(var i = 0; i < $scope.issueComments.length; i++) {
+          var issueComment = $scope.issueComments[i];
+          issueComment['markdown_body'] = marked(issueComment.body);
+        }
       });
       $scope.viewMode = 'issue';
     };

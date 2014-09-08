@@ -75,8 +75,8 @@
   <header class="issue-header">
     <p><a class="issue-back" ng-click="hideIssue()">&larr; Hide and go back</a></p>
     <h1>{{issue.title}}</h1>
-    <div class="issue-body" marked="issue.body"></div>
-    <p><em class="issue-state">{{issue.state}}</em></p>
+    <div class="issue-body" ng-bind-html="issue.markdown_body | emoji"></div>
+    <p><strong class="issue-state">{{issue.state}}</strong></p>
     <p><a class="view-issue-on-github" ng-href="{{issue.html_url}}">View on GitHub</a></p>
   </header>
 
@@ -86,7 +86,7 @@
       <header>
         <span class="username">{{comment.user.login}}</span>
       </header>
-      <div class="body" marked="comment.body"></div>
+      <div class="body" ng-bind-html="comment.markdown_body | emoji"></div>
     </li>
   </ol>
 </article>

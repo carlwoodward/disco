@@ -1,0 +1,15 @@
+{
+  "name": "angular-emoji",
+  "main": "dist/emoji.min.js",
+  "homepage": "https://github.com/globaldev/angular-emoji-filter",
+  "_release": "d32bc755b6",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "d32bc755b65b264b31926f9ee8f72b517747e4b3"
+  },
+  "_source": "git://github.com/globaldev/angular-emoji-filter.git",
+  "_target": "*",
+  "_originalSource": "angular-emoji-filter",
+  "_direct": true
+}
