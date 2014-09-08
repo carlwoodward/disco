@@ -1,5 +1,6 @@
 .app-view {
   display: flex;
+  display: -webkit-flex;
   height: 100%;
   position: relative;
 }

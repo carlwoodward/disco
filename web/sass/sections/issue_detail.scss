@@ -1,6 +1,7 @@
 .issue-detail {
   display: none;
   flex-direction: column;
+  -webkit-flex-direction: column;
   height: 100%;
   overflow-x: hidden;
   overflow-y: scroll;
