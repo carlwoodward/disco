@@ -4,6 +4,6 @@ web:
 	@cd web && python -m SimpleHTTPServer
 
 sass:
-	@sass --watch web/sass:web/css
+	@cd web && sass --watch sass:css
 
 .PHONY: web sass all
