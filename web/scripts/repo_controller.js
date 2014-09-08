@@ -2,7 +2,7 @@ var RepoController = angular.module('RepoController', []);
 
 RepoController.controller('RepoController', ['$scope', '$http', '$routeParams', '$location', 'marked',
   function ($scope, $http, $routeParams, $location, marked) {
-    var clientParams = '&client_id=c3a2cf5bc90344e47858&client_secret=650c7e530b49c3d89126d928991bf8e4eaf129d1'
+    var clientParams = '&client_id=1869ccc40d16d4b36b51&client_secret=a37eda7a98ba3a34b9d4d7bc3dac5ac0d082f7ee'
     $scope.viewMode = 'commits'; // Other option is issue.
 
     var transformSummary = function(commit) {
