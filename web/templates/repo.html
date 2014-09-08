@@ -71,9 +71,10 @@
   </ol>
 </article>
 
-<article class="issue-detail" ng-class="viewMode">
+<article class="issue-detail" ng-class="viewMode" ng-if="issue">
+  <a class="issue-back" ng-click="hideIssue()">&larr; Hide and go back</a>
+
   <header class="issue-header">
-    <p><a class="issue-back" ng-click="hideIssue()">&larr; Hide and go back</a></p>
     <h1>{{issue.title}}</h1>
     <div class="issue-body" ng-bind-html="issue.markdown_body | emoji"></div>
     <p><strong class="issue-state">{{issue.state}}</strong></p>
