@@ -4,10 +4,10 @@ var discoApp = angular.module('disco', [
   'emoji',
   'hc.marked',
   'AppController',
-  'RepoController'
+  'RepoController',
+  'TransformerService',
+  'GithubUrlService'
 ]);
-
-// discoApp.config(['marked', function(marked) { marked.setOptions({gfm: true}); }]);
 
 discoApp.config(['$routeProvider',
   function($routeProvider) {

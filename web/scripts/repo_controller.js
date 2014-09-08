@@ -1,74 +1,21 @@
 var RepoController = angular.module('RepoController', []);
 
-RepoController.controller('RepoController', ['$scope', '$http', '$routeParams', '$location', 'marked',
-  function ($scope, $http, $routeParams, $location, marked) {
-    var clientParams = '&client_id=1869ccc40d16d4b36b51&client_secret=a37eda7a98ba3a34b9d4d7bc3dac5ac0d082f7ee'
+RepoController.controller('RepoController', ['$scope', '$http', '$routeParams', '$location', 'marked', 'TransformerService', 'GithubUrlService',
+  function ($scope, $http, $routeParams, $location, marked, TransformerService, GithubUrlService) {
     $scope.viewMode = 'commits'; // Other option is issue.
 
-    var transformSummary = function(commit) {
-      commit['short_sha'] = commit.sha.substring(0, 8);
-      commit['formatted_date'] = moment(commit.commit.author.date).format('DD MMM YYYY');
-      var message = commit.commit.message;
-      commit['title'] = message.substring(0, message.indexOf('\n') == -1 ? message.length : message.indexOf('\n'));
-      return commit;
-    };
-
-    var transformDetail = function(commit) {
-      commit['formatted_date'] = moment(commit.commit.author.date).format('DD MMM YYYY h:mm:ss a');
-      var message = commit.commit.message;
-      var index = message.indexOf('\n');
-      commit['title'] = message.substring(0, index == -1 ? message.length : index);
-
-      var issueMatch = commit['title'].match(/#(\d+)\s/);
-      if(issueMatch) {
-        commit['issue'] = issueMatch[1];
-      }
-      else {
-        commit['issue'] = null;
-      }
-
-      commit['body'] = '';
-      if(index != -1) {
-        commit['body'] = message.substring(index + 1, message.length);
-      }
-
-      for(var i = 0; i < commit.files.length; i++) {
-        var lines = commit.files[i].patch.split('\n');
-        commit.files[i].lines = [];
-        for(var j = 0; j < lines.length; j++) {
-          var kind = 'default';
-          if(lines[j].indexOf('+') === 0) {
-            kind = 'add';
-          }
-          else if(lines[j].indexOf('-') === 0) {
-            kind = 'delete';
-          }
-          else if(lines[j].indexOf('@@') === 0) {
-            kind = 'marker';
-          }
-          else {
-            kind = 'context';
-          }
-          var line = { value: lines[j], kind: kind }
-          commit.files[i].lines.push(line);
-        }
-      }
-      return commit;
-    };
-
     $scope.loadIssue = function(issueNumber) {
-      var issueUrl = 'https://api.github.com/repos/' + $routeParams.owner + '/' + $routeParams.repo + '/issues/' + issueNumber + '?callback=JSON_CALLBACK' + clientParams;
+      var issueUrl = GithubUrlService.issueUrl($routeParams, issueNumber);
       $http.jsonp(issueUrl).success(function(response) {
         $scope.issue = response.data;
         $scope.issue['markdown_body'] = marked($scope.issue.body);
       });
-      var commentsUrl = 'https://api.github.com/repos/' + $routeParams.owner + '/' + $routeParams.repo + '/issues/' + issueNumber + '/comments?callback=JSON_CALLBACK' + clientParams;
+      var commentsUrl = GithubUrlService.issueCommentsUrl($routeParams, issueNumber);
       $http.jsonp(commentsUrl).success(function(response) {
         $scope.issueComments = response.data;
-        for(var i = 0; i < $scope.issueComments.length; i++) {
-          var issueComment = $scope.issueComments[i];
+        $scope.issueComments.forEach(function(issueComment) {
           issueComment['markdown_body'] = marked(issueComment.body);
-        }
+        });
       });
       $scope.viewMode = 'issue';
     };
@@ -99,8 +46,8 @@ RepoController.controller('RepoController', ['$scope', '$http', '$routeParams', 
     $scope.show = function(commit) {
       if($scope.commits.length > 0) {
         var commitSummary = commit;
-        $http.jsonp(commitSummary.url + '?callback=JSON_CALLBACK' + clientParams).success(function(response) {
-          $scope.commit = transformDetail(response.data);
+        $http.jsonp(commitSummary.url + '?callback=JSON_CALLBACK' + GithubUrlService.clientParams).success(function(response) {
+          $scope.commit = TransformerService.transformDetail(response.data);
         });
       }
     };
@@ -109,7 +56,7 @@ RepoController.controller('RepoController', ['$scope', '$http', '$routeParams', 
       if($scope.nextPage !== null) {
         $http.jsonp($scope.nextPage.replace(/angular.callbacks._\d+/, 'JSON_CALLBACK')).success(function(response) {
           $scope.commits = $scope.commits.concat((response.data || []).map(function(commit) {
-            return transformSummary(commit);
+            return TransformerService.transformSummary(commit);
           }));
 
           $scope.nextPage = $scope.findNextPage(response.meta);
@@ -117,23 +64,23 @@ RepoController.controller('RepoController', ['$scope', '$http', '$routeParams', 
       }
     };
 
-    var repoUrl = 'https://api.github.com/repos/' + $routeParams.owner + '/' + $routeParams.repo + '?callback=JSON_CALLBACK' + clientParams;
+    var repoUrl = GithubUrlService.repoUrl($routeParams);
     $http.jsonp(repoUrl).success(function(response) {
       $scope.repo = response.data;
     });
 
-    var commitsUrl = 'https://api.github.com/repos/' + $routeParams.owner + '/' + $routeParams.repo + '/commits?callback=JSON_CALLBACK' + clientParams;
+    var commitsUrl = GithubUrlService.commitsUrl($routeParams);
     $http.jsonp(commitsUrl).success(function(response) {
       $scope.commits = (response.data || []).map(function(commit) {
-        return transformSummary(commit);
+        return TransformerService.transformSummary(commit);
       });
 
       $scope.nextPage = $scope.findNextPage(response.meta);
 
       if($scope.commits.length > 0) {
         var commitSummary = $scope.commits[0];
-        $http.jsonp(commitSummary.url + '?callback=JSON_CALLBACK' + clientParams).success(function(response) {
-          $scope.commit = transformDetail(response.data);
+        $http.jsonp(commitSummary.url + '?callback=JSON_CALLBACK' + GithubUrlService.clientParams).success(function(response) {
+          $scope.commit = TransformerService.transformDetail(response.data);
         });
       }
     });
